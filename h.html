@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Trust Slogan</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    p {
+      font-size: 24px;
+      font-weight: bold;
+      background-color: green;
+      display: inline-block; /* Allow the p to resize based on content */
+      padding: 10px 20px;
+      overflow: hidden;
+    }
+
+    #changing-word {
+      display: inline-block;
+      overflow: hidden;
+      text-align: center;
+      transform-origin: center;
+      transition: transform 0.5s ease, opacity 0.5s ease, margin-left 0.5s ease; /* Add margin-left transition */
+    }
+
+    .rotate-out {
+      transform: rotateX(0deg) translateY(-40px);
+      opacity: 0;
+    }
+
+    .rotate-in {
+      transform: translateY(5px);
+      animation: textComeIn 1s ease-out;
+    }
+
+    @keyframes textComeIn {
+      0% {
+        transform: rotateX(0deg) translateY(40px);
+        opacity: 0;
+      }
+      90% {
+        transform: rotateX(0deg) translateY(5px);
+        opacity: 1;
+      }
+      100% {
+        transform: rotateX(0deg) translateY(5px);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <p>
+    "In the ChromoVerse, trust is the foundation of <span id="changing-word" class="rotate-in">innovation</span> Lets COnect"
+  </p>
+
+  <script>
+    const trustWords = ["innovation", "progress", "connection", "creativity", "solutions", "technology"];
+    let currentIndex = 0;
+
+    const changingWord = document.getElementById("changing-word");
+
+    setInterval(() => {
+      // Rotate out the current word
+      changingWord.classList.remove("rotate-in");
+      changingWord.classList.add("rotate-out");
+
+      setTimeout(() => {
+        // Change the text after the rotation-out animation
+        currentIndex = (currentIndex + 1) % trustWords.length;
+        changingWord.textContent = trustWords[currentIndex];
+
+        // Dynamically adjust the margin-left based on the new word length
+        const wordLength = changingWord.textContent.length;
+        const marginLeft = -(wordLength * 0.5) + "ch"; // Adjust based on word length
+        changingWord.style.marginLeft = marginLeft;
+
+        // Rotate in the new word
+        changingWord.classList.remove("rotate-out");
+        changingWord.classList.add("rotate-in");
+      }, 500); // Matches the duration of the CSS transition
+    }, 3000); // Change every 3 seconds
+  </script>
+</body>
+</html>

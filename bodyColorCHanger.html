@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Background Color</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 200vh; /* For demonstration, make the page scrollable */
+      background-color: #1E293B; /* bg-slate-900 */
+      transition: background-color 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    document.addEventListener("scroll", () => {
+      const scrollTop = window.scrollY; // Get the vertical scroll position
+      const body = document.body;
+
+      if (scrollTop === 0) {
+        // Set the original color when at the top
+        body.style.backgroundColor = "#1E293B"; // bg-slate-900
+      } else {
+        // Change background based on scroll
+        body.style.backgroundColor = `rgb(
+          ${Math.min(255, scrollTop / 2)},
+          ${Math.max(100, 200 - scrollTop / 2)},
+          ${Math.max(100, 200 - scrollTop / 4)}
+        )`;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="animated-text" class="text-4xl font-bold animate-transform-text"></div>
+
+<script>
+  const textArray = ["Welcome!", "Tailwind Magic!", "Transforming Text!", "Enjoy!"];
+  const textElement = document.getElementById("animated-text");
+  let index = 0;
+
+  setInterval(() => {
+    textElement.textContent = textArray[index];
+    index = (index + 1) % textArray.length;
+  }, 5000); // Change text every 5 seconds
+</script>
+
+</body>
+</html>

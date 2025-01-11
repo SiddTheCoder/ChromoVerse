@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChromoVerse</title>
+    <link rel="icon" href="src/assets/logo-withBg.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="src/scripts/animationForInto.css">
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Jersey+15&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap"
+        rel="stylesheet">
+
+    <!-- foont awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <!-- Style for TextGenerating -->
+         <style>
+            #changing-word {
+      display: inline-block;
+      overflow: hidden;
+      text-align: center;
+      transform-origin: center;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+      min-width: 150px; /* Fixed width to accommodate the longest word */
+    }
+
+    .rotate-out {
+      transform: rotateX(0deg) translateY(-40px);
+      opacity: 0;
+    }
+
+    .rotate-in {
+      transform: translateY(5px);
+      animation: textComeIn 1s ease-out;
+    }
+    @keyframes textComeIn {
+      0%{
+        transform: rotateX(0deg) translateY(40px);
+        opacity: 0;
+      }
+      90%{
+        transform: rotateX(0deg) translateY(4px);
+        opacity: 1;
+      }
+      100%{
+        transform: rotateX(0deg) translateY(4px);
+        opacity: 1;
+      }
+    }
+         </style>
+
+</head>
+
+<body class="bg-slate-900">
+    <header class="w-full h-auto">
+        <div id="headerContent"
+            class="w-full h-auto bg-slate-900  fixed top-0 left-0 z-50 transition-transform duration-300 ease-in-out flex justify-between text-white items-center px-6 py-4 ">
+            <div class="animate-fadeLeftoRight">
+                <a href="#" class="flex items-center gap-1">
+                    <img src="src/assets/ChromoVerse-Logo.png" width="70px">
+                    <p
+                        class="text-[24px] font-titillium tracking-wide bg-gradient-to-r from-blue-600 via-purple-500 to-indigo-400 inline-block text-transparent bg-clip-text font-semibold">
+                        ChromoVerse</p>
+                </a>
+            </div>
+
+            <div class="flex items-center gap-5">
+                <a class="" href="#">Documentation</a>
+
+                <button id="toggle-UI-mode" class="px-2 py-1 flex items-center">
+                    <img id="dayMode" src="src/assets/day-mode.png" width="25px" class="">
+                    <img id="nightMode" src="src/assets/night-mode.png" width="30px" class="hidden">
+                </button>
+
+                <button
+                    class="animate-faderightToLeft ml-40 bg-purple-600 p-1 px-5 rounded-md transition-colors duration-300 ease-in-out hover:bg-slate-900 text-bold">Join
+                    Pro</button>
+            </div>
+        </div>
+        <!-- Script for night-day-mode Behavior -->
+       
+         <!-- Script for scroll Behaviour of Header -->
+        <script>
+            let lastScroll = 0; // To track the previous scroll position
+            const headerContent = document.getElementById("headerContent");
+
+            window.addEventListener("scroll", () => {
+                const currentScroll = window.pageYOffset; // Get current vertical scroll position
+
+                if (currentScroll <= 0) {
+                    // User is at the top of the page
+                    headerContent.classList.remove("bg-slate-800/90");
+                    headerContent.classList.add("bg-slate-900");
+                }
+                else if (currentScroll > lastScroll) {
+                    // User is scrolling down
+                    headerContent.classList.remove("bg-slate-900");
+                    headerContent.classList.add("bg-slate-800/90");
+                    headerContent.classList.add("-translate-y-full");
+                }
+                else {
+                    // User is scrolling up
+                    headerContent.classList.remove("-translate-y-full");
+                    headerContent.classList.add("bg-slate-800/90");
+                }
+
+                lastScroll = currentScroll; // Update lastScroll with currentScroll
+            });
+        </script>
+    </header> 
+
+    <main class="relative top-44">
+        <section id="hero" class="w-full flex justify-center items-center h-auto text-white">
+            <div>
+                <h1 class="text-4xl">Innovation & Multidimensional Experiences at<span id="company-name"  class="ml-2 text-4xl tracking-wide bg-gradient-to-r from-blue-600 via-purple-500 to-indigo-400 inline-block text-transparent bg-clip-text">ChromoVerse</span> </h1>
+            <h2 class="text-xl overflow-hidden">
+                Bridging the biological and digital world, where <span id="changing-word" class="translate-y-1 rotate-in  bg-gradient-to-r from-blue-600 via-purple-500 to-indigo-400 inline-block text-transparent bg-clip-text text-2xl">colors</span> become code."
+            </h2>
+            </div>
+            <script src="src/scripts/textGenerator.js"></script>
+            <!-- script for text animation -->
+            <script>
+                const companyName = document.getElementById('company-name');
+                function startAnimation() {
+                companyName.classList.add('customAnimate-intro-text');
+
+                // Remove the animation class after it's done to reset
+                setTimeout(() => {
+                    companyName.classList.remove('customAnimate-intro-text');
+                }, 2000); 
+                }
+                startAnimation(); 
+                setInterval(startAnimation, 20000);
+            </script>
+        </section>
+    </main>
+
+</body>
+
+</html>
