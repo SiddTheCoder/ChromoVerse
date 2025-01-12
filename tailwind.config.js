@@ -7,9 +7,9 @@ module.exports = {
 
     extend: {
       colors: {
-        'dark-background': '#1a202c', // Custom dark background color
-        'dark-text': '#edf2f7', // Custom dark text color
-      },
+        'light-background': '#ffffff', // Custom light background color
+        'light-text': '#1a202c', // Custom light text color
+     },
 
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'], // Add Poppins as a custom font family
@@ -17,6 +17,7 @@ module.exports = {
         jersey: ['Jersey 15', 'sans-serif'],
         roboto: ['Roboto', 'sans-serif'],
         titillium: ['Titillium Web', 'sans-serif'],
+        kanit: ['Kanit', 'sans-serif'],
       },
 
       animation: {
